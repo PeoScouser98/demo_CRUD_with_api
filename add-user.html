@@ -51,16 +51,14 @@
 		<script type="module">
 			import { addUser } from "./app.js";
 			import $, { useForm } from "./jquery.js";
-			import validator from "./validate.js";
+
 			const addForm = $("#add-form");
 			if (addForm) {
 				addForm.addEventListener("submit", async (event) => {
 					try {
 						event.preventDefault();
 						const data = useForm(event.target);
-						console.log(data);
 						const response = await addUser(data);
-						console.log(response);
 						alert("Added user!");
 					} catch (error) {
 						console.log(errror.message);
