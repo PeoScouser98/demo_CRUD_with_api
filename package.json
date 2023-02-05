@@ -1,0 +1,15 @@
+{
+	"name": "test",
+	"version": "1.0.0",
+	"description": "",
+	"main": "app.js",
+	"scripts": {
+		"start": "json-server db.json --watch -p 3004"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"json-server": "^0.17.1"
+	}
+}

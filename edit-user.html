@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="./index.css" />
+	</head>
+	<style>
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 24px;
+		}
+		input {
+			padding: 0.5rem;
+			width: -webkit-fill-available;
+			border-radius: 0.25rem;
+			border: 1px solid rgb(189, 189, 189);
+		}
+		input:focus {
+			outline: none;
+		}
+	</style>
+	<body>
+		<div style="max-width: 384px; margin: 0 auto">
+			<h1 style="text-align: center; text-transform: capitalize; color: darkgrey; font-size: 1.5rem">add new user</h1>
+			<form action="" id="add-form">
+				<div class="form-control">
+					<input type="text" name="first_name" placeholder="first name" minlength="3" required autofocus />
+					<small class="error-message"></small>
+				</div>
+				<div class="form-control">
+					<input type="text" name="last_name" placeholder="last_name" minlength="3" required aria-haspopup="hello" />
+					<small class="error-message"></small>
+				</div>
+				<div class="form-control">
+					<input type="email" name="email" placeholder="example@email.com" required />
+					<small class="error-message"></small>
+				</div>
+				<div class="form-control">
+					<input type="text" name="avatar" placeholder="https://image/user.png" required />
+					<small class="error-message"></small>
+				</div>
+				<div class="form-control">
+					<button type="submit" class="btn btn-primary block">Save</button>
+				</div>
+			</form>
+		</div>
+		<script type="module">
+			import { editUser, getUser } from "./app.js";
+			import $, { useForm } from "./jquery.js";
+			document.addEventListener("DOMContentLoaded", () => {
+				const id = new URLSearchParams(document.location.search).get("id");
+
+				const addForm = $("#add-form");
+
+				getUser(id).then((data) => {
+					[...addForm.elements].forEach((item) => {
+						for (const key in data) {
+							if (item.name === key) item.value = data[key];
+						}
+					});
+				});
+
+				if (addForm) {
+					addForm.addEventListener("submit", async (event) => {
+						try {
+							event.preventDefault();
+
+							const data = useForm(event.target);
+							const response = await editUser(id, data);
+							if (response) {
+								window.location = "./index.html";
+								alert("Edited user successfully!");
+							}
+						} catch (error) {
+							alert("Failed to edit user");
+							console.log("[ERROR] Failed to add new user");
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,81 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+	max-width: 1280px;
+	margin: 0 auto;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border-radius: 1rem 1rem 1rem 1rem;
+}
+table thead {
+	background-color: gainsboro;
+	text-align: left;
+}
+table th {
+	padding: 10px;
+}
+table * :where(:not(img)) {
+	padding: 5px 10px;
+}
+table th {
+	text-transform: capitalize;
+}
+table tbody tr {
+	border-bottom: 0.5px solid rgb(211, 211, 211);
+}
+.menu {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+	list-style: none;
+	text-transform: capitalize;
+}
+.menu > li {
+	padding: 10px;
+}
+.menu > li > a {
+	color: black;
+	text-decoration: none;
+}
+.menu > li:hover {
+	background-color: darkgray;
+	border-radius: 4px 4px 4px 4px;
+	transition-duration: 300ms;
+}
+.btn {
+	padding: 0.5rem 1rem;
+	border-radius: 0.25rem 0.25rem 0.25rem 0.25rem;
+	text-decoration: none;
+	color: black;
+	border: none;
+	font-size: small;
+}
+.btn:hover {
+	cursor: pointer;
+}
+.btn:active:focus {
+	transform: scale(0.95);
+
+	transition-duration: 200ms;
+}
+.btn-primary {
+	background-color: rgb(0, 101, 233);
+	color: white;
+}
+.btn-error {
+	background-color: rgb(255, 28, 96);
+	color: whitesmoke;
+}
+
+.form-control {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
